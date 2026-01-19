@@ -66,7 +66,7 @@ public class Movement : MonoBehaviour
     }
 
 
-    void Move(float movement)
+    public void Move(float movement)
     {
         foreach (var wheel in wheels)
         {
@@ -75,7 +75,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    void Steer(float movement)
+    public void Steer(float movement)
     {
         foreach (var wheel in wheels)
         {
@@ -94,7 +94,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    void Brake(float movement)
+    public void Brake(float movement)
     {
         if (isBraking || Mathf.Abs(movement) < 0.01f)
         {
