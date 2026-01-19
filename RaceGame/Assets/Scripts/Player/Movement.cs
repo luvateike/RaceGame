@@ -44,9 +44,9 @@ public class Movement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Move();
-        Steer();
-        Brake();
+        Move(moveInput);
+        Steer(steerInput);
+        Brake(moveInput);
     }
 
 
@@ -65,25 +65,24 @@ public class Movement : MonoBehaviour
         isBraking = ctx.ReadValue<float>() > 0.1f;
     }
 
-    // -------- CAR LOGIC --------
 
-    void Move()
+    void Move(float movement)
     {
         foreach (var wheel in wheels)
         {
             wheel.wheelCollider.motorTorque =
-                moveInput * 600 * maxAcceleration * Time.fixedDeltaTime;
+                movement * 600 * maxAcceleration * Time.fixedDeltaTime;
         }
     }
 
-    void Steer()
+    void Steer(float movement)
     {
         foreach (var wheel in wheels)
         {
             if (wheel.axel == Axel.Front)
             {
                 float targetAngle =
-                    steerInput * turnSensitivity * maxSteerAngle;
+                    movement * turnSensitivity * maxSteerAngle;
 
                 wheel.wheelCollider.steerAngle =
                     Mathf.Lerp(
@@ -95,9 +94,9 @@ public class Movement : MonoBehaviour
         }
     }
 
-    void Brake()
+    void Brake(float movement)
     {
-        if (isBraking || Mathf.Abs(moveInput) < 0.01f)
+        if (isBraking || Mathf.Abs(movement) < 0.01f)
         {
             foreach (var wheel in wheels)
             {
