@@ -29,9 +29,9 @@ public class Movement : MonoBehaviour
 
     public List<Wheel> wheels;
 
-    float moveInput;
-    float steerInput;
-    bool isBraking;
+    public float moveInput;
+    public float steerInput;
+    public bool isBraking;
 
     private Rigidbody carRb;
 
