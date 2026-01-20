@@ -7,7 +7,7 @@ public class CarAI : MonoBehaviour
     public int difficulty;
     public GameObject nextWaypoint;
 
-    CheckpointOrder Waypoints;
+    WaypointOrder Waypoints;
     float carSpeed = 10;
     float turnSpeed = 1f;
 
@@ -22,9 +22,9 @@ public class CarAI : MonoBehaviour
 
     private void Start()
     {
-        Waypoints = FindAnyObjectByType<CheckpointOrder>();
-        nextWaypoint = Waypoints.Checkpoints[0];
-        numberOfWaypoints = Waypoints.Checkpoints.Count;
+        Waypoints = FindAnyObjectByType<WaypointOrder>();
+        nextWaypoint = Waypoints.Waypoints[0];
+        numberOfWaypoints = Waypoints.Waypoints.Count;
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -60,12 +60,12 @@ public class CarAI : MonoBehaviour
         if (waypointNumber == numberOfWaypoints-1)
         {
             waypointNumber = 0;
-            nextWaypoint = Waypoints.Checkpoints[waypointNumber];
+            nextWaypoint = Waypoints.Waypoints[waypointNumber];
         }
         else
         {
             waypointNumber++;
-            nextWaypoint = Waypoints.Checkpoints[waypointNumber];
+            nextWaypoint = Waypoints.Waypoints[waypointNumber];
         }
         Debug.Log(waypointNumber + "out of " + numberOfWaypoints);
     }

@@ -2,10 +2,10 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckpointOrder : MonoBehaviour
+public class WaypointOrder : MonoBehaviour
 {
 
-    public List<GameObject> Checkpoints;
+    public List<GameObject> Waypoints;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,6 +21,6 @@ public class CheckpointOrder : MonoBehaviour
 
     public void AddCheckpoint(GameObject checkpoint)
     {
-        Checkpoints.Add(checkpoint);
+        Waypoints.Add(checkpoint);
     }
 }
