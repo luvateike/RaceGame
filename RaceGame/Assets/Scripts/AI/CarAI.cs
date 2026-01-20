@@ -9,7 +9,7 @@ public class CarAI : MonoBehaviour
 
     CheckpointOrder Waypoints;
     float carSpeed = 10;
-    float turnSpeed = 1;
+    float turnSpeed = 1f;
 
     int waypointNumber = 0;
     int numberOfWaypoints;
