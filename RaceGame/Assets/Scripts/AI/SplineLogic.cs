@@ -9,7 +9,7 @@ public class SplineLogic : MonoBehaviour
     public List<GameObject> waypoints;
 
     BezierKnot knot;
-    void Start()
+    void Awake()
     {
         splineContainer = GetComponent<SplineContainer>();
         waypoints = FindAnyObjectByType<WaypointOrder>().Waypoints;
@@ -19,8 +19,7 @@ public class SplineLogic : MonoBehaviour
             splineContainer.Spline.Add(knot, TangentMode.AutoSmooth);
             //splineContainer.Spline.SetTangentMode(splineContainer.Spline.Count - 1, TangentMode.Continuous);
             //EVALUATEEEEEEE PLEASEEEEEEEEE
-            splineContainer.Evaluate(0, 0.5f, out var position, out var tangent, out var up);
-            Debug.Log(position);
+
         }
     }
 
