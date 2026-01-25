@@ -40,7 +40,7 @@ public class Movement : MonoBehaviour
     {
         carRb = GetComponent<Rigidbody>();
         carRb.centerOfMass = _centerOfMass;
-        carRb.maxLinearVelocity = maxSpeed;
+        //carRb.maxLinearVelocity = maxSpeed;
     }
 
 
@@ -49,6 +49,8 @@ public class Movement : MonoBehaviour
         Move(moveInput);
         Steer(steerInput);
         Brake(moveInput);
+
+        Debug.Log(carRb.linearVelocity.magnitude);
     }
 
 
@@ -70,21 +72,34 @@ public class Movement : MonoBehaviour
 
     public void Move(float movement)
     {
+        float speed = carRb.linearVelocity.magnitude;
+
         foreach (var wheel in wheels)
         {
-            wheel.wheelCollider.motorTorque =
-                movement * 600 * maxAcceleration * Time.fixedDeltaTime;
+            if (speed < maxSpeed)
+            {
+                wheel.wheelCollider.motorTorque =
+                    movement * 600 * maxAcceleration * Time.fixedDeltaTime;
+            }
+            else
+            {
+                wheel.wheelCollider.motorTorque = 0f;
+                speed = maxSpeed;
+            }
         }
     }
 
     public void Steer(float steering)
     {
+        float speed = carRb.linearVelocity.magnitude;
+        float speedSteerFactor = Mathf.Lerp(1f, 0.3f, speed / maxSpeed);
+
         foreach (var wheel in wheels)
         {
             if (wheel.axel == Axel.Front)
             {
                 float targetAngle =
-                    steering * turnSensitivity * maxSteerAngle;
+                    steering * turnSensitivity * maxSteerAngle * speedSteerFactor;
 
                 wheel.wheelCollider.steerAngle =
                     Mathf.Lerp(
