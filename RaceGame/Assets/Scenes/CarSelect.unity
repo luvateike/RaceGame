@@ -691,7 +691,7 @@ MonoBehaviour:
   - {fileID: 1626103719}
   - {fileID: 1667140495}
   selectedCar: 0
-  sceneToLoad: LinusScene
+  sceneToLoad: LuvaScene
   AccelerationValueText: {fileID: 1688860371}
   SpeedValueText: {fileID: 1550452844}
   TurnValueText: {fileID: 628568950}
@@ -1243,8 +1243,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 1384348897, guid: e5f53cb5d2adc5e47b3b3dddb52af0ff, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1869,7 +1869,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: START
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

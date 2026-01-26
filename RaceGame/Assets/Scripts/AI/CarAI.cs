@@ -48,6 +48,18 @@ public class CarAI : MonoBehaviour
     {
         if (difficulty == 0)
         {
+
+            if (nextWaypoint == null)
+            {
+                if (Waypoints == null) Waypoints = FindAnyObjectByType<WaypointOrder>();
+                if (Waypoints != null && Waypoints.Waypoints != null && Waypoints.Waypoints.Count > 0)
+                    nextWaypoint = Waypoints.Waypoints[0];
+                else
+                    return; 
+            }
+
+         
+
             Vector3 dirToWaypoint = (nextWaypoint.transform.position - transform.position).normalized;
             float dot = Vector3.Dot(transform.forward, dirToWaypoint);
             if (dot > 0)

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ProceduralTrack : MonoBehaviour
 {
@@ -12,10 +13,13 @@ public class ProceduralTrack : MonoBehaviour
     public float wallHeight = 2f;
     public float wallOutset = 0.2f;
 
-    //public Transform car;
-    //public float spawnHeight = 1f;
+    public Transform car;
+    public float spawnHeight = 1f;
 
     public List<Vector3> Centerline = new();
+
+    public event Action OnGenerated;
+    public IReadOnlyList<Vector3> GetCenterlineLocal() => Centerline;
 
     MeshFilter mf;
     MeshCollider mc;
@@ -31,13 +35,13 @@ public class ProceduralTrack : MonoBehaviour
     void Start()
     {
         Generate();
-       // PlaceCarAtStart();
+        PlaceCarAtStart();
     }
 
     public void Generate()
     {
 
-        //Generate the centerline points (this is the main path cars can follow)
+        //Generate the centerline points
         Vector3[] center = new Vector3[points];
 
         for (int i = 0; i < points; i++)
@@ -165,11 +169,13 @@ public class ProceduralTrack : MonoBehaviour
 
         mc.sharedMesh = null;
         mc.sharedMesh = mesh;
+
+        OnGenerated?.Invoke();
     }
 
-    //Tried doing a spawn car thingy, but the car just flies up into the sky when it collides with the track :p
+   
 
-   /* public void PlaceCarAtStart()
+    public void PlaceCarAtStart()
     {
         if (car == null || Centerline.Count < 2) return;
 
@@ -183,6 +189,6 @@ public class ProceduralTrack : MonoBehaviour
             start + Vector3.up * spawnHeight,
             Quaternion.LookRotation(forward.normalized, Vector3.up)
         );
-    } */
+    } 
 
 }
